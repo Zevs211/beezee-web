@@ -1,6 +1,7 @@
 <template>
-  <router-view />
+  <div>Home Page</div>
 </template>
 
 <script setup>
+
 </script>
