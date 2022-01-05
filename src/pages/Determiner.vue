@@ -13,12 +13,10 @@
           flex flex-col items-center justify-center
           rounded-xl
           shadow
-          bg-green-200
-          py-16
-          px-8
-          mr-12
+          bg-emerald-200
+          py-16 px-8 mr-12
           cursor-pointer select-none
-          transition-shadow transition-transform hover:shadow-xl transform hover:scale-105
+          transition hover:shadow-xl transform hover:scale-110
         "
         @click="chooseClass('vendor')"
       >
@@ -34,7 +32,7 @@
           py-16
           px-8
           cursor-pointer select-none
-          transition-shadow transition-transform hover:shadow-xl transform hover:scale-105
+          transition hover:shadow-xl transform hover:scale-110
         "
         @click="chooseClass('client')"
       >
@@ -98,7 +96,7 @@
       class="
         h-10 border border-green-500 rounded-xl
         px-4 mt-12 text-xl bg-green-300
-        transition-colors transition-opacity hover:bg-green-500
+        transition hover:bg-green-500
       "
       :disabled="!isEnoughSkills"
       :class="{ 'opacity-30 cursor-not-allowed': !isEnoughSkills }"
@@ -121,14 +119,15 @@
           flex flex-col items-center justify-center
           rounded-xl
           shadow
+          shadow-green-200
           bg-green-200
           py-16
           px-8
           mr-12
           cursor-pointer select-none
-          transition-shadow transition-transform hover:shadow-xl transform hover:scale-105
+          transition hover:shadow-xl transform hover:scale-105
         "
-        @click="openProjectCreation(true)"
+        @click="openOrderCreation(true)"
       >
         <div class="text-4xl text-black font-bold">Да</div>
         <div class="text-3xl text-black mt-4">есть дизайн или ТЗ</div>
@@ -138,13 +137,14 @@
           flex flex-col items-center justify-center
           rounded-xl
           shadow
+          shadow-yellow-200
           bg-yellow-200
           py-16
           px-8
           cursor-pointer select-none
-          transition-shadow transition-transform hover:shadow-xl transform hover:scale-105
+          transition hover:shadow-xl transform hover:scale-105
         "
-        @click="openProjectCreation()"
+        @click="openOrderCreation()"
       >
         <div class="text-4xl text-black font-bold">Нет</div>
         <div class="text-3xl text-black mt-4">но у меня есть идея проекта</div>
@@ -155,7 +155,10 @@
 
 <script setup>
 import { ref, computed } from 'vue'
+import { useRouter } from 'vue-router'
 import IconClose from '../components/icons/Close.vue'
+
+const router = useRouter();
 
 const characterClass = ref('')
 const skillInputValue = ref('')
@@ -186,9 +189,11 @@ const onSkillKeypress = (e, skill) => {
 }
 const onFindJob = () => {
   // redirect to project list with applied filter by selected skills
+  router.push({ name: 'jobs' })
 }
-const openProjectCreation = (files) => {
-  // if files is true - open project creation page from files uploading
+const openOrderCreation = (hasFiles) => {
+  // if hasFiles is true - open project creation page from files uploading
   // if false - from constructor
+  router.push({ name: 'order-create', params: { hasFiles: !!hasFiles } })
 }
 </script>
