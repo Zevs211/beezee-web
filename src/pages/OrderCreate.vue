@@ -1,7 +1,7 @@
 <template>
   <!-- TITLE STEP -->
   <section
-    class="w-full h-screen bg-slate-50 flex flex-col items-center justify-center py-12 px-24"
+    class="w-full h-screen bg-slate-100 flex flex-col items-center justify-center py-12 px-24"
   >
     <div class="text-4xl">Придумайте название для проекта</div>
     <div class="mt-3 text-lg">Название должно быть лаконичным и содержательным</div>
@@ -33,7 +33,7 @@
   </section>
   <!-- DESCRIPTION STEP -->
   <section
-    class="w-full h-screen bg-slate-50 flex flex-col items-center justify-center py-12 px-24"
+    class="w-full h-screen bg-slate-100 flex flex-col items-center justify-center py-12 px-24"
   >
     <div class="text-4xl">Опишите что нужно сделать</div>
     <div class="w-2/3">
@@ -70,7 +70,7 @@
   </section>
   <!-- BUDGET STEP -->
   <section
-    class="w-full h-screen bg-slate-50 flex flex-col items-center justify-center py-12 px-24"
+    class="w-full h-screen bg-slate-100 flex flex-col items-center justify-center py-12 px-24"
   >
     <div class="text-4xl">Укажите бюджет проекта</div>
     <div class="w-1/3 flex items-center text-xl mt-8">
@@ -104,7 +104,7 @@
   </section>
   <!-- DEADLINE STEP -->
   <section
-    class="w-full h-screen bg-slate-50 flex flex-col items-center justify-center py-12 px-24"
+    class="w-full h-screen bg-slate-100 flex flex-col items-center justify-center py-12 px-24"
   >
     <div class="text-4xl">До какого срока нужно выполнить проект?</div>
     <DatePicker class="mt-8" v-model="deadline" />

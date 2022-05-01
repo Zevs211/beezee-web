@@ -4,7 +4,9 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "test": "vitest --dom",
+    "coverage": "vitest --dom run --coverage"
   },
   "dependencies": {
     "date-fns": "^2.27.0",
@@ -14,10 +16,14 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^2.0.1",
+    "@vue/test-utils": "^2.0.0-rc.18",
     "autoprefixer": "^10.4.0",
+    "c8": "^7.11.2",
+    "happy-dom": "^2.55.0",
     "postcss": "^8.4.5",
     "sass": "^1.45.0",
     "tailwindcss": "^3.0.5",
-    "vite": "^2.7.3"
+    "vite": "^2.7.3",
+    "vitest": "^0.9.4"
   }
 }
