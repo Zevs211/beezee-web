@@ -61,7 +61,7 @@ After resolution status is changed by moderator
 
 ## CANCEL
 - from SEARCHING FOR VENDOR moves the project to drafts (there's a limit of drafts)
-- from ESTIMATING moves the project to drafts
+- from ESTIMATING moves the project to drafts or if big work was done by vendor budget negotiation
 - from QUESTIONS moves the project to drafts
 - from IN PROGRESS only through dispute:
     - if vendor agrees balance is unfreezed for client
