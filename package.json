@@ -1,5 +1,5 @@
 {
-  "name": "handcrafted",
+  "name": "web",
   "version": "0.0.1",
   "scripts": {
     "dev": "vite",
@@ -9,21 +9,21 @@
     "coverage": "vitest --dom run --coverage"
   },
   "dependencies": {
-    "date-fns": "^2.27.0",
-    "vue": "^3.2.16",
+    "date-fns": "^2.28.0",
+    "vue": "^3.2.37",
     "vue-i18n": "^9.2.0-beta.22",
-    "vue-router": "^4.0.12"
+    "vue-router": "^4.0.16"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^2.0.1",
-    "@vue/test-utils": "^2.0.0-rc.18",
-    "autoprefixer": "^10.4.0",
-    "c8": "^7.11.2",
-    "happy-dom": "^2.55.0",
-    "postcss": "^8.4.5",
-    "sass": "^1.45.0",
-    "tailwindcss": "^3.0.5",
-    "vite": "^2.7.3",
-    "vitest": "^0.9.4"
+    "@vitejs/plugin-vue": "^2.3.3",
+    "@vue/test-utils": "^2.0.0",
+    "autoprefixer": "^10.4.7",
+    "c8": "^7.11.3",
+    "happy-dom": "^5.3.1",
+    "postcss": "^8.4.14",
+    "sass": "^1.53.0",
+    "tailwindcss": "^3.1.4",
+    "vite": "^2.9.12",
+    "vitest": "^0.16.0"
   }
 }
