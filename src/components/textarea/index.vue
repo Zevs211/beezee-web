@@ -1,10 +1,12 @@
 <template>
-  <input
+  <textarea
     type="text"
     :placeholder="placeholder"
     :maxlength="maxlength"
+    :rows="rows"
     :value="modelValue"
     @input="onInput">
+  </textarea>
 </template>
 
 <script setup>
@@ -24,6 +26,10 @@ defineProps({
     type: Number,
     required: false,
     default: Infinity,
+  },
+  rows: {
+    type: Number,
+    required: false,
   },
   mask: {
     type: String,
