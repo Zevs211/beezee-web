@@ -1,6 +1,10 @@
 {
-  "name": "web",
+  "name": "@demandndeal/web",
   "version": "0.0.1",
+  "description": "Demand&Deal is a platform for linking vendors and clients, companies and agencies",
+  "engines": {
+    "node": ">= 18.1.0"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -8,10 +12,21 @@
     "test": "vitest --dom",
     "coverage": "vitest --dom run --coverage"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/demandndeal/web"
+  },
+  "keywords": [],
+  "author": "Oleg Polyachenkov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/demandndeal/web/issues"
+  },
+  "homepage": "https://github.com/demandndeal/web#readme",
   "dependencies": {
     "date-fns": "^2.28.0",
     "vue": "^3.2.37",
-    "vue-i18n": "^9.2.0-beta.22",
+    "vue-i18n": "^9.2.0-beta.36",
     "vue-router": "^4.0.16"
   },
   "devDependencies": {
@@ -19,11 +34,11 @@
     "@vue/test-utils": "^2.0.0",
     "autoprefixer": "^10.4.7",
     "c8": "^7.11.3",
-    "happy-dom": "^5.3.1",
+    "happy-dom": "^5.3.4",
     "postcss": "^8.4.14",
     "sass": "^1.53.0",
     "tailwindcss": "^3.1.4",
-    "vite": "^2.9.12",
+    "vite": "^2.9.13",
     "vitest": "^0.16.0"
   }
 }
