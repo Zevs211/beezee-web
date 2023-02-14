@@ -18,7 +18,10 @@
       </div>
     </section>
     <div class="flex items-center mt-8">
-      <FormButton class="bg-red-500">Отмена</FormButton>
+      <FormButton
+        v-show="hasAnyChanges"
+        class="bg-red-500"
+      >Отмена</FormButton>
       <FormButton
         v-show="currentFormField?.index > 0"
         class="ml-4 bg-blue-500"
@@ -41,13 +44,13 @@
 </template>
 
 <script setup>
-import { ref, shallowRef } from 'vue';
+import { ref, shallowRef, computed } from 'vue';
 // import { useRoute } from 'vue-router';
+import { Datepicker } from '@jeffe95/oui';
 import FormButton from '../../components/FormButton.vue';
 import FormInput from './components/form-input.vue';
 import FormTextarea from './components/form-textarea.vue';
 import FormCurrencyInput from './components/form-currency-input.vue';
-// import DatePicker from '../../components/DatePicker.vue';
 
 // const routeParams = useRoute().params;
 // const hasFiles = computed(() => routeParams.hasFiles);
@@ -76,9 +79,18 @@ const formFieldsSchema = ref([{
   props: {
     currency: { name: 'USD', symbol: '$' },
   },
+}, {
+  index: 3,
+  name: 'За сколько нужно выполнить проект?',
+  label: 'deadline',
+  component: shallowRef(Datepicker),
+  value: null,
+  props: { },
 }]);
 
 const currentFormField = ref(formFieldsSchema.value[0]);
+
+const hasAnyChanges = computed(() => formFieldsSchema.value.some((field) => !!field.value));
 
 const onPreviousField = () => {
   const index = currentFormField.value.index - 1;

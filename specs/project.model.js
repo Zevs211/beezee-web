@@ -1,49 +1,49 @@
-const SEARCHING_FOR_VENDOR = 'SEARCHING FOR VENDOR'
-const ESTIMATING = 'ESTIMATING'
-const IN_PROGRESS = 'IN PROGRESS'
+const SEARCHING_FOR_VENDOR = 'SEARCHING FOR VENDOR';
+const ESTIMATING = 'ESTIMATING';
+const IN_PROGRESS = 'IN PROGRESS';
 // const FEEDBACK_LOOPS = 'FEEDBACK LOOPS'
-const ON_HOLD = 'ON HOLD'
-const DELIVERING = 'DELIVERING'
-const WAITING_FOR_APPROVAL = 'WAITING FOR APPROVAL'
-const DISPUTE = 'DISPUTE'
-const COMPLETED = 'COMPLETED'
-const CANCEL = 'CANCEL'
-const PRODUCT_RETURNAL = 'PRODUCT RETURNAL'
+const ON_HOLD = 'ON HOLD';
+const DELIVERING = 'DELIVERING';
+const WAITING_FOR_APPROVAL = 'WAITING FOR APPROVAL';
+const DISPUTE = 'DISPUTE';
+const COMPLETED = 'COMPLETED';
+const CANCEL = 'CANCEL';
+const PRODUCT_RETURNAL = 'PRODUCT RETURNAL';
 
 export default {
   title: {
     type: String,
-    required: true
+    required: true,
   },
   description: {
     type: String,
     required: false, // it is required to publish though
-    default: ''
+    default: '',
   },
   // https://github.com/MikeMcl/decimal.js-light/
   budget: {
     type: Decimal,
-    required: true
+    required: true,
   },
   deadline: {
     type: Date,
-    required: true
+    required: true,
   },
   tags: [{
     type: Tag,
-    default: []
+    default: [],
   }],
   skills: [{
     type: Skill,
-    default: []
+    default: [],
   }],
   currency: {
     type: Currency,
-    default: []
+    default: [],
   },
   isDigital: {
     type: Boolean,
-    required: true
+    required: true,
   },
   status: {
     type: String,
@@ -59,37 +59,37 @@ export default {
       DISPUTE,
       COMPLETED,
       CANCEL,
-      PRODUCT_RETURNAL
-    ]
+      PRODUCT_RETURNAL,
+    ],
   },
   vendors: [{
     type: Vendor,
-    default: []
+    default: [],
   }],
   estimation: {
     maxDuration: {
       type: Number,
       required: false,
-      default: 12
+      default: 12,
     },
     budget: {
       type: Decimal,
-      required: false
+      required: false,
     },
     deadline: {
       type: Date,
-      required: false
+      required: false,
     },
   },
   // Если происходит доработка чтобы не создавать новый заказ
   revision: {
     type: Boolean,
-    default: false
+    default: false,
   },
   feedbackLoopDuration: {
     type: Number,
     required: false,
-    default: 24
+    default: 24,
   },
   // All events happened during the project existance
   // EXAMPLES BEGIN:
@@ -97,18 +97,18 @@ export default {
     datetime: Date,
     event: 'STATUS CHANGE',
     result: SEARCHING_FOR_VENDOR,
-    causedBy: 'System'
+    causedBy: 'System',
   }, {
     datetime: Date,
     event: 'DISPUTE',
     result: 'resolved by judge xx',
-    causedBy: 'Client'
+    causedBy: 'Client',
   }, {
     datetime: Date,
     event: 'ESTIMATION',
     result: 'reestimated by vendor xx to yy',
-    causedBy: 'Vendor'
+    causedBy: 'Vendor',
   }],
   // EXAMPLE ENDS
-  events: []
-}
+  events: [],
+};
