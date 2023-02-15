@@ -18,6 +18,7 @@
       </div>
     </section>
     <div class="flex items-center mt-8">
+      <!-- <Datepicker v-model="date"></Datepicker> -->
       <FormButton
         v-show="hasAnyChanges"
         class="bg-red-500"
@@ -45,8 +46,10 @@
 
 <script setup>
 import { ref, shallowRef, computed } from 'vue';
+import Datepicker from '@vuepic/vue-datepicker';
 // import { useRoute } from 'vue-router';
-import { Datepicker } from '@jeffe95/oui';
+// import { Datepicker } from '@jeffe95/oui';
+
 import FormButton from '../../components/FormButton.vue';
 import FormInput from './components/form-input.vue';
 import FormTextarea from './components/form-textarea.vue';
@@ -88,6 +91,7 @@ const formFieldsSchema = ref([{
   props: { },
 }]);
 
+const date = ref();
 const currentFormField = ref(formFieldsSchema.value[0]);
 
 const hasAnyChanges = computed(() => formFieldsSchema.value.some((field) => !!field.value));
