@@ -18,11 +18,6 @@
       </div>
     </section>
     <div class="flex items-center mt-8">
-      <!-- <Datepicker v-model="date"></Datepicker> -->
-      <FormButton
-        v-show="hasAnyChanges"
-        class="bg-red-500"
-      >Отмена</FormButton>
       <FormButton
         v-show="currentFormField?.index > 0"
         class="ml-4 bg-blue-500"
@@ -33,30 +28,22 @@
         class="ml-4 bg-blue-500"
         @click="onNextField"
       >Далее</FormButton>
+      <FormButton
+        v-show="shouldShowSaveButton"
+        class="ml-4 bg-blue-500"
+        @click="save"
+      >Сохранить</FormButton>
     </div>
   </main>
-  <!-- DEADLINE STEP -->
-  <!-- <section
-    class="flex flex-col items-center justify-center w-full h-screen px-24 py-12 bg-slate-100"
-  >
-    <div class="text-4xl">До какого срока нужно выполнить проект?</div>
-    <DatePicker class="mt-8" v-model="deadline" />
-  </section> -->
 </template>
 
 <script setup>
-import { ref, shallowRef, computed } from 'vue';
+import { computed, ref, shallowRef } from 'vue';
 import Datepicker from '@vuepic/vue-datepicker';
-// import { useRoute } from 'vue-router';
-// import { Datepicker } from '@jeffe95/oui';
-
 import FormButton from '../../components/FormButton.vue';
 import FormInput from './components/form-input.vue';
 import FormTextarea from './components/form-textarea.vue';
 import FormCurrencyInput from './components/form-currency-input.vue';
-
-// const routeParams = useRoute().params;
-// const hasFiles = computed(() => routeParams.hasFiles);
 
 const formFieldsSchema = ref([{
   index: 0,
@@ -91,10 +78,8 @@ const formFieldsSchema = ref([{
   props: { },
 }]);
 
-const date = ref();
+const LAST_FORM_INDEX = formFieldsSchema.value[formFieldsSchema.value.length - 1];
 const currentFormField = ref(formFieldsSchema.value[0]);
-
-const hasAnyChanges = computed(() => formFieldsSchema.value.some((field) => !!field.value));
 
 const onPreviousField = () => {
   const index = currentFormField.value.index - 1;
@@ -104,6 +89,12 @@ const onNextField = () => {
   const index = currentFormField.value.index + 1;
   currentFormField.value = formFieldsSchema.value[index];
 };
+const shouldShowSaveButton = computed(() => {
+  if (currentFormField.value.index !== LAST_FORM_INDEX.index) return false;
+  return formFieldsSchema.value.every((field) => !!field.value);
+});
 
-// const deadline = ref(null);
+const save = () => {
+  console.log(true);
+};
 </script>
