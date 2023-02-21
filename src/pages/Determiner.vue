@@ -52,7 +52,8 @@
       <div class="w-1/3 mt-10">
         <input
           type="text"
-          class="w-full h-12 border border-gray-400 focus:border-black transition-colors rounded-xl px-4 outline-none text-xl bg-transparent"
+          class="w-full h-12 border border-gray-400 focus:border-black transition-colors rounded-xl
+          px-4 outline-none text-xl bg-transparent"
           v-model="skillInputValue"
           @keypress="onInputKeyPress"
           maxlength="30"
@@ -105,10 +106,7 @@
     >Найти работу</button>
   </div>
   <!-- I'm a client -->
-  <div
-    v-if="isClient"
-    class="w-full h-screen flex flex-col items-center justify-center"
-  >
+  <div v-if="isClient" class="w-full h-screen flex flex-col items-center justify-center">
     <div class="w-full flex flex-col items-center">
       <h1 class="text-6xl text-black font-extrabold">У вас есть дизайн проекта?</h1>
       <h4 class="text-2xl text-black mt-4">или любая другая сопутствующая документация</h4>
@@ -154,46 +152,47 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
-import { useRouter } from 'vue-router'
-import IconClose from '../components/icons/Close.vue'
+import { ref, computed } from 'vue';
+import { useRouter } from 'vue-router';
+import IconClose from '../components/icons/Close.vue';
 
 const router = useRouter();
 
-const characterClass = ref('')
-const skillInputValue = ref('')
-const skills = ref([])
+const characterClass = ref('');
+const skillInputValue = ref('');
+const skills = ref([]);
 
-const characterClassIsEmpty = computed(() => !characterClass.value)
-const isVendor = computed(() => characterClass.value === 'vendor')
-const isClient = computed(() => characterClass.value === 'client')
-const isEnoughSkills = computed(() => skills.value.length > 0)
+const characterClassIsEmpty = computed(() => !characterClass.value);
+const isVendor = computed(() => characterClass.value === 'vendor');
+const isClient = computed(() => characterClass.value === 'client');
+const isEnoughSkills = computed(() => skills.value.length > 0);
 
-const chooseClass = (className) => characterClass.value = className
-const onInputKeyPress = (payload) => {
-  if (payload.key === "Enter") processInputValue()
-}
+const chooseClass = (className) => characterClass.value = className;
 const processInputValue = () => {
-  const str = skillInputValue.value
-  if (str.length >= 30 || skills.value.includes(str)) return
+  const str = skillInputValue.value;
+  if (str.length >= 30 || skills.value.includes(str)) return;
   if (str !== '') {
-    skills.value.push(str)
+    skills.value.push(str);
   }
-  skillInputValue.value = ''
-}
+  skillInputValue.value = '';
+};
+const onInputKeyPress = (payload) => {
+  if (payload.key === 'Enter') processInputValue();
+};
+
 const removeSkill = (skill) => {
-  skills.value = skills.value.filter(s => s !== skill)
-}
+  skills.value = skills.value.filter(s => s !== skill);
+};
 const onSkillKeypress = (e, skill) => {
-  if (e.key === "Backspace") removeSkill(skill)
-}
+  if (e.key === 'Backspace') removeSkill(skill);
+};
 const onFindJob = () => {
   // redirect to project list with applied filter by selected skills
-  router.push({ name: 'jobs' })
-}
+  router.push({ name: 'jobs' });
+};
 const openOrderCreation = (hasFiles) => {
   // if hasFiles is true - open project creation page from files uploading
   // if false - from constructor
-  router.push({ name: 'order-create', params: { hasFiles: !!hasFiles } })
-}
+  router.push({ name: 'order-create', params: { hasFiles: !!hasFiles } });
+};
 </script>
