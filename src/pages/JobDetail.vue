@@ -8,10 +8,14 @@
       <h1 class="text-4xl ml-12">Создать складываемую кровать по чертежам</h1>
     </div>
     <div class="flex items-center flex-wrap ml-16 mt-6">
-      <div v-for="tag in tags" :key="tag" class="rounded-xl bg-slate-300 mr-4 mb-2 py-1 px-4">#{{ tag.name }}</div>
+      <div v-for="tag in tags" :key="tag"
+        class="rounded-xl bg-slate-300 mr-4 mb-2 py-1 px-4"
+      >#{{ tag.name }}</div>
     </div>
     <div class="flex items-center flex-wrap ml-16 mt-1">
-      <div v-for="skill in skills" :key="skill" class="rounded-xl bg-yellow-300 mr-4 py-1 px-4">{{ skill.name }}</div>
+      <div v-for="skill in skills" :key="skill"
+        class="rounded-xl bg-yellow-300 mr-4 py-1 px-4"
+      >{{ skill.name }}</div>
     </div>
     <div class="ml-16 mt-4">
       <div>
@@ -33,38 +37,35 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue'
+import { format } from 'date-fns';
+import { ru } from 'date-fns/locale';
+import { onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import ArrowLeft from '../components/icons/ArrowLeft.vue';
 import IconClock from '../components/icons/Clock.vue';
-import { getRandomJobs } from '../mocks'
-import { format } from 'date-fns'
-import { ru } from 'date-fns/locale'
+import { getRandomJobs } from '../mocks';
 
-const router = useRouter()
+const router = useRouter();
 
-const tags = ref([])
-const skills = ref([])
-const budget = ref(100)
-const currency = ref({ id: 1, name: 'USD', symbol: '$' })
-const deadline = ref(new Date())
+const tags = ref([]);
+const skills = ref([]);
+const budget = ref(100);
+const currency = ref({ id: 1, name: 'USD', symbol: '$' });
+const deadline = ref(new Date());
 
 onMounted(() => {
-  const [ job ] = getRandomJobs(1)
-  console.log(job)
-  tags.value = job.tags
-  skills.value = job.skills
-  deadline.value = job.deadline
-})
+  const [job] = getRandomJobs(1);
+  console.log(job);
+  tags.value = job.tags;
+  skills.value = job.skills;
+  deadline.value = job.deadline;
+});
 
-const formatBudget = (budget) => {
-  return `${currency.value.name} ${budget.toLocaleString()} ${currency.value.symbol}`
-}
-const formatDate = (datetime) => {
-  return format(datetime, 'd MMMM y', { locale: ru })
-}
+const formatBudget = (budget) => `${currency.value.name} ${budget.toLocaleString()} ${currency.value.symbol}`;
+
+const formatDate = (datetime) => format(datetime, 'd MMMM y', { locale: ru });
 
 const toJobList = () => {
-  router.push({ name: 'jobs' })
-}
+  router.push({ name: 'jobs' });
+};
 </script>

@@ -1,7 +1,7 @@
 import { createApp } from 'vue';
 import { createI18n } from 'vue-i18n';
-import App from './App.vue';
 import Datepicker from '@vuepic/vue-datepicker';
+import App from './App.vue';
 import '@vuepic/vue-datepicker/dist/main.css';
 import router from './router';
 import './styles/index.scss';

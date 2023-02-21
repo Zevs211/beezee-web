@@ -4,9 +4,11 @@ import DeterminerPage from './pages/Determiner.vue';
 import JobsPage from './pages/Jobs.vue';
 import JobDetail from './pages/JobDetail.vue';
 import OrderCreate from './pages/order-create/page.vue';
+import Authentication from './pages/Authentication.vue';
 
 const routes = [
   { path: '/', name: 'landing', component: LandingPage },
+  { path: '/authentication', name: 'authentication', component: Authentication },
   { path: '/purpose', name: 'determiner', component: DeterminerPage },
   { path: '/jobs', name: 'jobs', component: JobsPage },
   { path: '/job/:id', name: 'job-detail', component: JobDetail },
