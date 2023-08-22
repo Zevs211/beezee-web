@@ -75,7 +75,13 @@ const formFieldsSchema = ref([{
   label: 'deadline',
   component: shallowRef(Datepicker),
   value: null,
-  props: { },
+  props: {
+    locale: 'ru-RU',
+    inline: true,
+    'month-change-on-scroll': false,
+    'auto-apply': true,
+    class: ['w-100', 'justify-center']
+  },
 }]);
 
 const LAST_FORM_INDEX = formFieldsSchema.value[formFieldsSchema.value.length - 1];
@@ -86,6 +92,7 @@ const onPreviousField = () => {
   currentFormField.value = formFieldsSchema.value[index];
 };
 const onNextField = () => {
+  // TODO: check if user filled current field correctly for each type of the field
   const index = currentFormField.value.index + 1;
   currentFormField.value = formFieldsSchema.value[index];
 };

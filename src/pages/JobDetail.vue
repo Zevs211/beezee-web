@@ -1,21 +1,50 @@
 <template>
   <div class="w-full h-screen py-12 px-24 bg-slate-50">
-    <div class="flex items-center">
-      <ArrowLeft
-        class="transition-transform transform hover:scale-125 cursor-pointer"
-        @click="toJobList"
+    <div class="flex items-center justify-between">
+      <div class="flex items-center">
+        <ArrowLeft
+          class="transition-transform transform hover:scale-125 cursor-pointer"
+          @click="toJobList"
+        />
+        <h1 class="text-4xl ml-12">Создать складываемую кровать по чертежам</h1>
+      </div>
+      <Pencil
+        v-if="!isOrderPublished && !canUserTakeOrder"
+        class="transition-transform transform hover:scale-125 cursor-pointer mr-12"
       />
-      <h1 class="text-4xl ml-12">Создать складываемую кровать по чертежам</h1>
     </div>
-    <div class="flex items-center flex-wrap ml-16 mt-6">
-      <div v-for="tag in tags" :key="tag"
-        class="rounded-xl bg-slate-300 mr-4 mb-2 py-1 px-4"
-      >#{{ tag.name }}</div>
-    </div>
-    <div class="flex items-center flex-wrap ml-16 mt-1">
-      <div v-for="skill in skills" :key="skill"
-        class="rounded-xl bg-yellow-300 mr-4 py-1 px-4"
-      >{{ skill.name }}</div>
+    <div class="flex items-center justify-between">
+      <div>
+        <div class="flex items-center flex-wrap ml-16 mt-6">
+          <div v-for="tag in tags" :key="tag"
+            class="rounded-xl bg-slate-300 mr-4 mb-2 py-1 px-4"
+          >#{{ tag.name }}</div>
+        </div>
+        <div class="flex items-center flex-wrap ml-16 mt-1">
+          <div v-for="skill in skills" :key="skill"
+            class="rounded-xl bg-yellow-300 mr-4 py-1 px-4"
+          >{{ skill.name }}</div>
+        </div>
+      </div>
+      <div v-if="canUserTakeOrder">
+        <FormButton
+          v-if="!isOrderTakenByUser"
+          class="hover:scale-100 hover:bg-green-600 bg-green-500 text-black mr-12"
+          @click="onTakeOrder"
+        >Взять в работу</FormButton>
+        <span v-else class="mr-12">Взято вами в работу</span>
+      </div>
+      <div v-else>
+        <FormButton
+          v-if="!isOrderPublished"
+          class="hover:scale-100 hover:bg-green-600 bg-green-500 text-black mr-12"
+          @click="onPublishOrder"
+        >Опубликовать заказ</FormButton>
+        <div v-else class="flex items-center mr-12">
+          <span class="mr-2">Опубликовано</span>
+          <Check class="text-green-500" />
+        </div>
+      </div>
     </div>
     <div class="ml-16 mt-4">
       <div>
@@ -39,10 +68,13 @@
 <script setup>
 import { format } from 'date-fns';
 import { ru } from 'date-fns/locale';
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, computed } from 'vue';
 import { useRouter } from 'vue-router';
 import ArrowLeft from '../components/icons/ArrowLeft.vue';
 import IconClock from '../components/icons/Clock.vue';
+import Pencil from '../components/icons/Pencil.vue';
+import Check from '../components/icons/Check.vue';
+import FormButton from '../components/FormButton.vue';
 import { getRandomJobs } from '../mocks';
 
 const router = useRouter();
@@ -52,6 +84,16 @@ const skills = ref([]);
 const budget = ref(100);
 const currency = ref({ id: 1, name: 'USD', symbol: '$' });
 const deadline = ref(new Date());
+
+const CLIENT = 'client';
+const VENDOR = 'vendor';
+const userRole = CLIENT;
+const loggedUserId = ref('1');
+const orderVendorId = ref('');
+const isOrderPublished = ref(false);
+
+const canUserTakeOrder = computed(() => userRole === VENDOR);
+const isOrderTakenByUser = computed(() => loggedUserId.value === orderVendorId.value);
 
 onMounted(() => {
   const [job] = getRandomJobs(1);
@@ -64,6 +106,13 @@ onMounted(() => {
 const formatBudget = (budget) => `${currency.value.name} ${budget.toLocaleString()} ${currency.value.symbol}`;
 
 const formatDate = (datetime) => format(datetime, 'd MMMM y', { locale: ru });
+
+const onTakeOrder = () => {
+  orderVendorId.value = loggedUserId.value;
+}
+const onPublishOrder = () => {
+  isOrderPublished.value = true;
+}
 
 const toJobList = () => {
   router.push({ name: 'jobs' });
