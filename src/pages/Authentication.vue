@@ -10,7 +10,7 @@
                 <FormInput class="mt-2" v-model="signInPayload.email"></FormInput>
                 <div class="flex justify-between mt-8">
                   <div>Password</div>
-                  <div class="text-blue-400"><a href="www.google.com">Forgot password?</a></div>
+                  <div class="text-blue-400"><a href="/forgot-password">Forgot password?</a></div>
                 </div>
                 <FormInput class="mt-2" v-model="signInPayload.password"></FormInput>
                 <div class="flex items-center justify-between mt-8"></div>
@@ -20,7 +20,6 @@
                 <FormInput class="mt-2" v-model="signUpPayload.email"></FormInput>
                 <div class="flex justify-between mt-8">
                   <div>Password</div>
-                  <div class="text-blue-400"><a href="www.google.com">Forgot password?</a></div>
                 </div>
                 <FormInput class="mt-2" v-model="signUpPayload.password"></FormInput>
                 <div class="mt-8">FirstName</div>
